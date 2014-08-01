@@ -8,9 +8,7 @@ Used for fast deploying of classes by inheriting existent ones.
 ## Instalation
 
 ```bash
-
 npm install findhit-class --save
-
 ```
 
 ## Usage
@@ -67,4 +65,4 @@ var MyNewClass = MyClass.extend({
 
 ## Thanks
 
-Huge thanks to [Leaflet](https://github.com/Leaflet/Leaflet/blob/master/src/core/Class.js), [John Resig](http://ejohn.org/blog/simple-javascript-inheritance/) and Dean Edwards.
+Huge thanks to [Leaflet](https://github.com/Leaflet/Leaflet/blob/master/src/core/Class.js), [John Resig](http://ejohn.org/blog/simple-javascript-inheritance/) and [Dean Edwards](http://dean.edwards.name/weblog/2006/03/base/).
