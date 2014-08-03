@@ -1,42 +1,44 @@
 {
-	"name": "findhit-class",
-	"description": "javascript class framework",
-	"version": "0.0.1",
-	"author": "José Moreira <jose.moreira@findhit.com>",
-	"contributors": [
-		{
-			"name": "José Moreira",
-			"email": "jose.moreira@findhit.com"
-		},
-		{
-			"name": "Bruno Casanova",
-			"email": "bruno.casanova@findhit.com"
-		},
-		{
-			"name": "Gabriel Conceição",
-			"email": "gabriel.conceicao@findhit.com"
-		}
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/findhit/findhit-class.git"
-	},
-	"bugs": {
-		"url": "https://github.com/findhit/findhit-class/issues"
-	},
-	"dependencies": {},
-	"devDependencies": {},
-	"keywords": [
-		"class",
-		"framework",
-		"extender",
-		"extend",
-		"nodejs"
-	],
-	"main": "index",
-	"scripts": {},
-	"engines": {
-		"node": ">=0.8"
-	},
-	"license": "GPL v3"
+  "name": "findhit-class",
+  "description": "javascript class framework",
+  "version": "0.0.1",
+  "author": "José Moreira <jose.moreira@findhit.com>",
+  "contributors": [
+    {
+      "name": "José Moreira",
+      "email": "jose.moreira@findhit.com"
+    },
+    {
+      "name": "Bruno Casanova",
+      "email": "bruno.casanova@findhit.com"
+    },
+    {
+      "name": "Gabriel Conceição",
+      "email": "gabriel.conceicao@findhit.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/findhit/findhit-class.git"
+  },
+  "bugs": {
+    "url": "https://github.com/findhit/findhit-class/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^1.21.3"
+  },
+  "keywords": [
+    "class",
+    "framework",
+    "extender",
+    "extend",
+    "nodejs"
+  ],
+  "main": "index",
+  "scripts": {},
+  "engines": {
+    "node": ">=0.8"
+  },
+  "license": "GPL v3"
 }
