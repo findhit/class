@@ -1,9 +1,13 @@
-var Class = require('../index');
+var Class = require('../index'),
+
+	sinon = require('sinon'),
+	chai = require('chai'),
+	expect = chai.expect;
 
 describe("Class", function () {
 
 	describe("#extend", function () {
-		var class,
+		var Example,
 			constructor,
 			method;
 
@@ -11,7 +15,7 @@ describe("Class", function () {
 			constructor = sinon.spy();
 			method = sinon.spy();
 
-			class = Class.extend({
+			Example = Class.extend({
 				statics: {bla: 1},
 				includes: {mixin: true},
 
@@ -22,85 +26,85 @@ describe("Class", function () {
 		});
 
 		it("creates a class with the given constructor & properties", function () {
-			var a = new class();
+			var a = new Example();
 
-			expect(constructor.called).to.be.ok();
+			expect(constructor.called).to.be.ok;
 			expect(a.foo).to.eql(5);
 
 			a.bar();
 
-			expect(method.called).to.be.ok();
+			expect(method.called).to.be.ok;
 		});
 
 		it("inherits parent classes' constructor & properties", function () {
-			var class2 = class.extend({baz: 2});
+			var Example2 = Example.extend({baz: 2});
 
-			var b = new class2();
+			var b = new Example2();
 
-			expect(b instanceof class).to.be.ok();
-			expect(b instanceof class2).to.be.ok();
+			expect(b instanceof Example).to.be.ok;
+			expect(b instanceof Example2).to.be.ok;
 
-			expect(constructor.called).to.be.ok();
+			expect(constructor.called).to.be.ok;
 			expect(b.baz).to.eql(2);
 
 			b.bar();
 
-			expect(method.called).to.be.ok();
+			expect(method.called).to.be.ok;
 		});
 
 		it("supports static properties", function () {
-			expect(class.bla).to.eql(1);
+			expect(Example.bla).to.eql(1);
 		});
 
 		it("inherits parent static properties", function () {
-			var class2 = class.extend({});
+			var Example2 = Example.extend({});
 
-			expect(class2.bla).to.eql(1);
+			expect(Example2.bla).to.eql(1);
 		});
 
 		it("overrides parent static properties", function () {
-			var class2 = class.extend({statics: {bla: 2}});
+			var Example2 = Example.extend({statics: {bla: 2}});
 
-			expect(class2.bla).to.eql(2);
+			expect(Example2.bla).to.eql(2);
 		});
 
 		it("includes the given mixin", function () {
-			var a = new class();
-			expect(a.mixin).to.be.ok();
+			var a = new Example();
+			expect(a.mixin).to.be.ok;
 		});
 
 		it("includes multiple mixins", function () {
-			var class2 = Class.extend({
+			var Example2 = Class.extend({
 				includes: [{mixin: true}, {mixin2: true}]
 			});
-			var a = new class2();
+			var a = new Example2();
 
-			expect(a.mixin).to.be.ok();
-			expect(a.mixin2).to.be.ok();
+			expect(a.mixin).to.be.ok;
+			expect(a.mixin2).to.be.ok;
 		});
 
 		it("grants the ability to include the given mixin", function () {
-			class.include({mixin2: true});
+			Example.include({mixin2: true});
 
-			var a = new class();
-			expect(a.mixin2).to.be.ok();
+			var a = new Example();
+			expect(a.mixin2).to.be.ok;
 		});
 
 		it("merges options instead of replacing them", function () {
-			var classWithOptions1 = Class.extend({
+			var ExampleWithOptions1 = Class.extend({
 				options: {
 					foo1: 1,
 					foo2: 2
 				}
 			});
-			var classWithOptions2 = classWithOptions1.extend({
+			var ExampleWithOptions2 = ExampleWithOptions1.extend({
 				options: {
 					foo2: 3,
 					foo3: 4
 				}
 			});
 
-			var a = new classWithOptions2();
+			var a = new ExampleWithOptions2();
 			expect(a.options.foo1).to.eql(1);
 			expect(a.options.foo2).to.eql(3);
 			expect(a.options.foo3).to.eql(4);
@@ -122,12 +126,12 @@ describe("Class", function () {
 		it("adds constructor hooks correctly", function () {
 			var spy1 = sinon.spy();
 
-			class.addInitHook(spy1);
-			class.addInitHook('bar', 1, 2, 3);
+			Example.addInitHook(spy1);
+			Example.addInitHook('bar', 1, 2, 3);
 
-			var a = new class();
+			var a = new Example();
 
-			expect(spy1.called).to.be.ok();
+			expect(spy1.called).to.be.ok;
 			expect(method.calledWith(1, 2, 3));
 		});
 
@@ -135,29 +139,29 @@ describe("Class", function () {
 			var spy1 = sinon.spy(),
 				spy2 = sinon.spy();
 
-			var class2 = class.extend({});
+			var Example2 = Example.extend({});
 
-			class.addInitHook(spy1);
-			class2.addInitHook(spy2);
+			Example.addInitHook(spy1);
+			Example2.addInitHook(spy2);
 
-			var a = new class2();
+			var a = new Example2();
 
-			expect(spy1.called).to.be.ok();
-			expect(spy2.called).to.be.ok();
+			expect(spy1.called).to.be.ok;
+			expect(spy2.called).to.be.ok;
 		});
 
 		it("does not call child constructor hooks", function () {
 			var spy1 = sinon.spy(),
 				spy2 = sinon.spy();
 
-			var class2 = class.extend({});
+			var Example2 = Example.extend({});
 
-			class.addInitHook(spy1);
-			class2.addInitHook(spy2);
+			Example.addInitHook(spy1);
+			Example2.addInitHook(spy2);
 
-			var a = new class();
+			var a = new Example();
 
-			expect(spy1.called).to.be.ok();
+			expect(spy1.called).to.be.ok;
 			expect(spy2.called).to.eql(false);
 		});
 	});
