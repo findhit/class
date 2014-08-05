@@ -25,7 +25,7 @@
     "url": "https://github.com/findhit/findhit-class/issues"
   },
   "dependencies": {
-    "underscore": "^1.6.0"
+    "findhit-util": "findhit/findhit-util"
   },
   "devDependencies": {
     "chai": "^1.9.1",
