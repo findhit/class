@@ -25,7 +25,7 @@
     "url": "https://github.com/findhit/findhit-class/issues"
   },
   "dependencies": {
-    "findhit-util": "findhit/findhit-util"
+    "findhit-util": "latest"
   },
   "devDependencies": {
     "chai": "^1.9.1",
