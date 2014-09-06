@@ -8,7 +8,7 @@ Used for fast deploying of classes by inheriting existent ones.
 ## Instalation
 
 ```bash
-npm install findhit/findhit-class --save
+npm install findhit-class --save
 ```
 
 ## Usage
