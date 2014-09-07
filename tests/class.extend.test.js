@@ -6,7 +6,7 @@ var Class = require('../index'),
 
 describe("Class", function () {
 
-	describe("#extend", function () {
+	describe(".extend", function () {
 		var Example,
 			constructor,
 			method;
