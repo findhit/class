@@ -1,7 +1,7 @@
 {
   "name": "findhit-class",
   "description": "javascript class framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "José Moreira <jose.moreira@findhit.com>",
   "contributors": [
     {
@@ -25,7 +25,7 @@
     "url": "https://github.com/findhit/findhit-class/issues"
   },
   "dependencies": {
-    "findhit-util": "latest"
+    "findhit-util": "0.0.5"
   },
   "devDependencies": {
     "chai": "^1.9.1",
