@@ -1,5 +1,4 @@
-findhit-class
-=============
+# Class ![test-badge](http://strider.findhit.com/findhit/findhit-class/badge)
 
 javascript class framework
 
