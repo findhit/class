@@ -41,7 +41,7 @@ describe("Class", function () {
                 expect( method.calledWith(1, 2, 3));
             });
 
-            it.only("inherits constructor hooks", function () {
+            it("inherits constructor hooks", function () {
                 var spy1 = sinon.spy(),
                     spy2 = sinon.spy();
 

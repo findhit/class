@@ -18,7 +18,6 @@ var Class = function () {};
 
 // Mixin extras
 require( './lib/statics' )( Class );
-require( './lib/util' )( Class );
 
 // Mixin features
 require( './lib/features/extendable' )( Class );
