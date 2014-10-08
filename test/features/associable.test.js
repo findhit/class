@@ -111,14 +111,14 @@ describe("Class", function () {
 
                     });
 
-                    it( ".get/.set methods scopes", function () {
+                    it( ".get method scopes", function () {
 
                         var alpha = new this.Alpha(),
                             bravo = new this.Bravo();
 
                         // Test if they are reachable on both scopes
                         expect( alpha.getJohnies() ).to.be.deep.equal( [] );
-                        expect( bravo.Alpha ).to.be.equal( null );
+                        expect( bravo.getAlpha() ).to.be.equal( null );
 
                     });
 
@@ -132,7 +132,7 @@ describe("Class", function () {
                             bravo = new this.Bravo();
 
                         // Link them
-                        alpha.setJohnies( [ bravo ] );
+                        alpha.Johnies = [ bravo ];
 
                         // Test if they are reachable on both scopes
                         expect( alpha.Johnies ).to.be.deep.equal( [ bravo ] );
@@ -140,13 +140,27 @@ describe("Class", function () {
 
                     });
 
-                    it( ".get/.set methods scopes", function () {
+                    it( ".set/.get methods scopes", function () {
 
                         var alpha = new this.Alpha(),
                             bravo = new this.Bravo();
 
                         // Link them
-                        alpha.addJohny( bravo );
+                        alpha.setJohnies( [ bravo ] );
+
+                        // Test if they are reachable on both scopes
+                        expect( alpha.getJohnies() ).to.be.deep.equal( [ bravo ] );
+                        expect( bravo.Alpha ).to.be.equal( alpha );
+
+                    });
+
+                    it( ".add/.get methods scopes", function () {
+
+                        var alpha = new this.Alpha(),
+                            bravo = new this.Bravo();
+
+                        // Link them
+                        alpha.addJohnies( [ bravo ] );
 
                         // Test if they are reachable on both scopes
                         expect( alpha.getJohnies() ).to.be.deep.equal( [ bravo ] );
@@ -159,6 +173,39 @@ describe("Class", function () {
             });
 
             describe( "N:M", function () {
+
+            });
+
+            describe( "internal tests to make development faster", function () {
+
+                beforeEach(function() {
+
+                    this.Alpha.hasMany( 'Johnies', this.Bravo );
+                    this.Bravo.belongsTo( 'Alpha', this.Alpha );
+
+                    this.Alpha.hasMany( 'Charlies', this.Charlie );
+                    this.Charlie.hasMany( 'Alphas', this.Alpha );
+
+                });
+
+                describe( ".getAssociations", function () {
+
+                    beforeEach(function () {
+                        this.alpha_to_bravo_association = this.Alpha.associations.get( this.Bravo );
+                        this.bravo_to_alpha_association = this.Bravo.associations.get( this.Alpha );
+                    });
+
+                    it( "associations shouldn't be undefined neither null", function () {
+                        expect( this.alpha_to_bravo_association ).to.be.ok;
+                        expect( this.bravo_to_alpha_association ).to.be.ok;
+                    });
+
+                    it( "Check if targetAssociation's are correct", function () {
+                        expect( this.alpha_to_bravo_association.targetAssociation ).to.be.equal( this.bravo_to_alpha_association );
+                        expect( this.bravo_to_alpha_association.targetAssociation ).to.be.equal( this.alpha_to_bravo_association );
+                    });
+
+                });
 
             });
         });
